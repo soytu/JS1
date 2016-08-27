@@ -6,7 +6,7 @@
     </head>
 
     <body>
-     	<script type="text/javascript">
+     	<script type="text/javascript"> //Изменение для Github
         
      // Задание 1
             var a =1, b =1, c, d;
