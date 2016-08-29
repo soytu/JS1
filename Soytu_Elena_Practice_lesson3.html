@@ -1,0 +1,58 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Practice_lesson3</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+        
+ // User storage
+		
+		var users = [
+			{
+				firstName: 'Carrie',
+				lastName: 'Mathison',
+				birthDay: '26.05.1980',
+				phones: [
+					'19005553322',
+					'19302221133'
+				] 
+			},
+			{
+				firstName: 'Nicolas',
+				lastName: 'Brody',
+				birthDay: '18.02.1976',
+				phones: [
+					'15005532287',
+					'16002288991'
+				] 
+			}
+		];
+
+
+		var user={};
+		user.firstName=prompt('Введите имя');
+		user.lastName=prompt('Введите фамилию');
+		user.birthDay=prompt('Введите дату рождения');
+		user.phones=[];
+		user.phones[0]=prompt('Введите номер телефона');
+	
+		users.push(user);
+
+		for(i=0; i<users.length; i++)	{
+			console.log('Имя: '+ users[i].firstName+' '+users[i].lastName);
+			console.log('Дата рождения: '+ users[i].birthDay);
+			console.log('Телефон: '+ users[i].phones[0]);
+			console.log('');
+		}
+
+       
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
