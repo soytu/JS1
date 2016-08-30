@@ -29,21 +29,25 @@
 			}
 		];
 
-
-		var user={};
+		var user={}, a;
 		user.firstName=prompt('Введите имя');
 		user.lastName=prompt('Введите фамилию');
 		user.birthDay=prompt('Введите дату рождения');
 		user.phones=[];
-		user.phones[0]=prompt('Введите номер телефона');
-	
+		for(i=0; i<5; i++) {
+		a=prompt('Введите номер телефона');//Чтобы не создавать последний пустой элемент массива. 
+		if (a==''||a==null)break;
+		user.phones[i]=a;
+		}
+		
 		users.push(user);
 
 		for(i=0; i<users.length; i++)	{
 			console.log('Имя: '+ users[i].firstName+' '+users[i].lastName);
 			console.log('Дата рождения: '+ users[i].birthDay);
-			console.log('Телефон: '+ users[i].phones[0]);
-			console.log('');
+			for(j=0; j<(users[i].phones.length); j++) {
+			console.log('Телефон: '+ users[i].phones[j]);}
+			console.log('');//Для красоты
 		}
 
        
