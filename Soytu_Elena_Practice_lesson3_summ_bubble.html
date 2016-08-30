@@ -1,0 +1,55 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Practice_lesson3</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+     // Cкладываем цифры введенного числа   
+ var a,b, summ=0;
+	a=prompt('Введите число')
+	for(i=0; i<20; i++){
+		b=a%10;
+		a=(a-b)/10;
+		summ=summ+b;
+		if (a==0) i=21;
+		}
+		alert(summ);
+
+		// Метод пузырька
+
+var userN=[]; n=1; a=0;
+
+
+		for(i=0; i<20; i++) {
+			userN[i]=prompt('Введите число');
+				if (userN[i]==''||userN[i]==null)break;
+			}
+
+		while (n==1){
+			n=0;
+			for(i=0; i<(userN.length-1); i++) {
+				if (Number(userN[i])>Number(userN[i+1])){ //До тех пор, пока не поставила Number, JS по непонятной мне причине сравнивал строки. Даже если меняла ввод так, что пустых значений в массиве не было, только числа отличные от нуля. Кучу времени угробила. С чего он это взял????
+					a=userN[i+1];
+					userN[i+1]=userN[i];
+					userN[i]=a;
+					n=1;}	
+					}
+				}
+
+	for (i=1; i<userN.length; i++) {
+			console.log(userN[i]);
+	}
+
+        </script>
+
+    </body>
+</html>
+
+
+
+//
+
+
+
+
