@@ -1,0 +1,62 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Homework_lesson4</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+     //1.	Напишите функцию min, принимающую два аргумента, и возвращающую минимальный из них.
+	
+     	function min(x,y) {
+     		var x,y;
+ 				if (x>y) x=y;
+ 						console.log(x)
+ 				} 
+ 			min(0,10);
+ 			min(0,-10);
+ 			min(5,125);
+ 			min(6,6);
+ 			min('Elena', 'Anna');
+
+
+		//2. Напишите функцию countBs, которая принимает строку в качестве аргумента, 
+		// и возвращает количество символов “B”, содержащихся в строке.
+function countBs(str) {
+	return str.length;
+	}
+
+console.log (countBs('pingpong')); 
+//Затем напишите функцию countChar, которая работает примерно как countBs, только принимает второй параметр — символ, который мы будем искать в строке (вместо того, чтобы просто считать количество символов “B”). Для этого переделайте функцию countBs.
+
+function countChar(str,l) {
+	var i=0;
+	while (str.charAt(i)!=l){
+		i++;
+	}
+	return ++i;
+	}
+console.log(countChar('pingpong','g')); 
+
+
+
+function countChar(str,l) {
+	var n='';
+	for (var i=0; i<=str.length; i++) {
+		if (str.charAt(i)==l) n+=(i+1)+';';
+	}
+	return n;
+	}
+console.log(countChar('pingpong','g')); 
+
+       </script>
+
+    </body>
+</html>
+
+
+
+//
+
+
+
+
