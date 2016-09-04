@@ -29,9 +29,9 @@ function csvFormat() {
 	for(i=0; i<users.length; i++)	{
 		var allPhones='';
 		for(j=0; j<(users[i].phones.length); j++) {
-			allPhones=allPhones+users[i].phones[j]+',';
+			allPhones=allPhones+','+users[i].phones[j];
 		}
-			usersCsv=usersCsv+users[i].firstName+','+users[i].lastName+','+users[i].birthDay+','+allPhones+'\n';
+			usersCsv=usersCsv+users[i].firstName+','+users[i].lastName+','+users[i].birthDay+allPhones+'\n';
 	}
 	return usersCsv
 }
