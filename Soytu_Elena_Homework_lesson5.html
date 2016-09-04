@@ -1,0 +1,70 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Homework_lesson5</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+//•	Написать функцию преобразования цвета из 10-ного представления в 16-ный. 
+//Функция должна принимать 3 числа от 0 до 255 и возвращать строковый хеш.
+
+function Perevod(y) {
+	var y1=[];
+		y1[2]= Turn(y%16);
+		y=(y-(y%16))/16;
+		y1[1]=(y>0)?Turn(y%16):0;
+		return (''+y1[1]+y1[2]);
+}
+function Turn(x){
+x=(x==11)?'B':(x==12)?'C':(x==13)?'D':(x==14)?'E':(x==15)?'F':x;
+return x;
+}
+var i=0,r='',g='',b='';
+var colorRGB=prompt('Введите код RGB: R,G,B');
+	while (colorRGB.charAt(i)!=',') {
+		r=r+colorRGB.charAt(i);	
+		i++;
+	}
+	while (colorRGB.charAt(i+1)!=',') {
+		g=g+colorRGB.charAt(i+1); 
+		i++;
+	}	
+	while (i+1<colorRGB.length) {
+		b=b+colorRGB.charAt(i+2);
+		i++	
+	}
+if ((r>255)||(g>255)||(b>255)) {
+	alert('некорректный ввод');
+	}
+  else {
+	var result = '#'+Perevod(r)+Perevod(g)+Perevod(b);
+	};
+
+console.log (result);
+
+//Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999, мы должны получить на выходе объект, в котором в соответствующих свойствах //описаны единицы, десятки и сотни. Напримердля числа 245 мы должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, 'сотни’: 2}. Если число превышает 999, //необходимо выдать соответствующее сообщение с помощью console.logи вернуть пустой объект.
+
+var o=prompt('Введите число от 0 до 999');
+var o1={}
+	if (Number(o)>999) {
+	console.log('ошибка');
+	o1={};
+	}else{
+		o1.hundreds=(o-o%100)/100;
+		o=o%100;
+		o1.tens=(o-o%10)/10;
+		o1.ones=o%10
+	}
+console.log('Единицы'+':'+o1.ones+','+'Десятки'+':'+o1.tens+','+'Сотни'+':'+ o1.hundreds);
+
+
+   
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
