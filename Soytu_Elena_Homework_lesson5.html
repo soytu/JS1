@@ -5,9 +5,16 @@
 
     <body>
      	<script type="text/javascript">
-//•	Написать функцию преобразования цвета из 10-ного представления в 16-ный. 
+//Написать функцию преобразования цвета из 10-ного представления в 16-ный. 
 //Функция должна принимать 3 числа от 0 до 255 и возвращать строковый хеш.
-
+function TurnRGB(r,g,b){
+if ((r>255)||(g>255)||(b>255)) {
+	alert('некорректный ввод');
+	}
+  else {
+	var result = '#'+Perevod(r)+Perevod(g)+Perevod(b);
+	};	
+}
 function Perevod(y) {
 	var y1=[];
 		y1[2]= Turn(y%16);
@@ -33,12 +40,7 @@ var colorRGB=prompt('Введите код RGB: R,G,B');
 		b=b+colorRGB.charAt(i+2);
 		i++	
 	}
-if ((r>255)||(g>255)||(b>255)) {
-	alert('некорректный ввод');
-	}
-  else {
-	var result = '#'+Perevod(r)+Perevod(g)+Perevod(b);
-	};
+TurnRGB (r,g,b)
 
 console.log (result);
 
@@ -57,7 +59,19 @@ var o1={}
 	}
 console.log('Единицы'+':'+o1.ones+','+'Десятки'+':'+o1.tens+','+'Сотни'+':'+ o1.hundreds);
 
+// 
+function conv_base(form, base){
+    form.display.value = (+form.display.value).toString(base);
+}
 
+// Этой функцией пользуются белые люди, надо переделать
+function decToHex(n)
+{ 
+ return Number(n).toString(16); 
+}
+
+pp=decToHex(255);
+console.log(pp);
    
         </script>
 
