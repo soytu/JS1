@@ -1,0 +1,56 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Practice_lesson4</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+       
+	
+		var users = [];
+
+// Добавление пользователя в массив и вывоз в консоль
+function User(){
+	var user={}, a;
+	user.firstName=prompt('Введите имя');
+	user.lastName=prompt('Введите фамилию');
+	user.birthDay=prompt('Введите дату рождения');
+	user.phones=[];
+	for(i=0; i<5; i++) {
+		a=prompt('Введите номер телефона');//Чтобы не создавать последний пустой элемент массива. 
+		if (a==''||a==null)break;
+		user.phones[i]=a;
+	}
+	users.push(user);
+}
+
+function csvFormat() {
+	var usersCsv='';
+	for(i=0; i<users.length; i++)	{
+		var allPhones='';
+		for(j=0; j<(users[i].phones.length); j++) {
+			allPhones=allPhones+users[i].phones[j]+',';
+		}
+			usersCsv=usersCsv+users[i].firstName+','+users[i].lastName+','+users[i].birthDay+','+allPhones+'\n';
+	}
+	return usersCsv
+}
+
+var add=confirm("Добавить пользователя?");
+while (add == true) {
+User();
+add=confirm("Добавить пользователя?");
+}
+
+console.log (csvFormat());
+
+      
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
