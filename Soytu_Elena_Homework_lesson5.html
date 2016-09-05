@@ -12,37 +12,31 @@ if ((r>255)||(g>255)||(b>255)) {
 	alert('некорректный ввод');
 	}
   else {
-	var result = '#'+Perevod(r)+Perevod(g)+Perevod(b);
-	};	
+	return ('#'+decToHex(r)+decToHex(g)+decToHex(b));
+	}	
 }
-function Perevod(y) {
-	var y1=[];
-		y1[2]= Turn(y%16);
-		y=(y-(y%16))/16;
-		y1[1]=(y>0)?Turn(y%16):0;
-		return (''+y1[1]+y1[2]);
-}
-function Turn(x){
-x=(x==11)?'B':(x==12)?'C':(x==13)?'D':(x==14)?'E':(x==15)?'F':x;
-return x;
-}
-var i=0,r='',g='',b='';
+function decToHex(n){ 
+	var n;
+	return (n>15)?Number(n).toString(16):('0'+Number(n).toString(16)); 
+	}
+
+var i=0, r1='', g1='', b1='';
 var colorRGB=prompt('Введите код RGB: R,G,B');
 	while (colorRGB.charAt(i)!=',') {
-		r=r+colorRGB.charAt(i);	
+		r1=r1+colorRGB.charAt(i);	
 		i++;
 	}
 	while (colorRGB.charAt(i+1)!=',') {
-		g=g+colorRGB.charAt(i+1); 
+		g1=g1+colorRGB.charAt(i+1); 
 		i++;
 	}	
 	while (i+1<colorRGB.length) {
-		b=b+colorRGB.charAt(i+2);
+		b1=b1+colorRGB.charAt(i+2);
 		i++	
 	}
-TurnRGB (r,g,b)
+console.log (r1,g1,b1);	
 
-console.log (result);
+console.log(TurnRGB (r1,g1,b1));
 
 //Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999, мы должны получить на выходе объект, в котором в соответствующих свойствах //описаны единицы, десятки и сотни. Напримердля числа 245 мы должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, 'сотни’: 2}. Если число превышает 999, //необходимо выдать соответствующее сообщение с помощью console.logи вернуть пустой объект.
 
@@ -58,21 +52,7 @@ var o1={}
 		o1.ones=o%10
 	}
 console.log('Единицы'+':'+o1.ones+','+'Десятки'+':'+o1.tens+','+'Сотни'+':'+ o1.hundreds);
-
-// 
-function conv_base(form, base){
-    form.display.value = (+form.display.value).toString(base);
-}
-
-// Этой функцией пользуются белые люди, надо переделать
-function decToHex(n)
-{ 
- return Number(n).toString(16); 
-}
-
-pp=decToHex(255);
-console.log(pp);
-   
+  
         </script>
 
     </body>
