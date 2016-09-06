@@ -1,0 +1,80 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Practice_lesson4</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+   
+	
+
+// Добавление пользователя в массив
+function User(){
+	var user={}, a;
+	user.id= makeCounter(); 
+	user.firstName=prompt('Введите имя');
+	user.lastName=prompt('Введите фамилию');
+	user.birthDay=prompt('Введите дату рождения');
+	user.phones=[];
+	for(i=0; i<5; i++) {
+		a=prompt('Введите номер телефона');//Чтобы не создавать последний пустой элемент массива. 
+		if (a==''||a==null)break;
+		user.phones[i]=a;
+	}
+	users.push(user);
+}
+//Генератор id
+function makeCounter(){
+	return	currentCount++;
+}
+
+//Вывод в csv-формат
+function csvFormat() {
+	var usersCsv='';
+	for(i=0; i<users.length; i++)	{
+		var allPhones='';
+		for(j=0; j<(users[i].phones.length); j++) {
+			allPhones=allPhones+','+users[i].phones[j];
+		}
+			usersCsv=usersCsv+users[i].id+','+users[i].firstName+','+users[i].lastName+','+users[i].birthDay+allPhones+'\n';
+	}
+	return usersCsv
+}
+function userDel(n){
+	users[n-1].id=null; 
+	users[n-1].firstName=null;
+	users[n-1].lastName=null;
+	users[n-1].birthDay=null;
+	users[n-1].phones=[];
+	for(i=0; i<users[n-1].phones.length; i++) {
+		users[n-1].phones[i]=0;
+	}
+	return users[n-1].lastName;
+}
+//Добавление пользователя
+var users = []; currentCount=1;
+var add=confirm("Добавить пользователя?");
+while (add == true) {
+	User();
+	add=confirm("Добавить пользователя?");
+	}
+console.log (csvFormat());
+
+//Метод удаления пользователя
+ var del=confirm("Удалить пользователя?");  
+ if (del==true) {
+ 	var idDel=Number(prompt('Введите id удаляемого пользователя'));
+ 	userDel(idDel);
+ 	}
+ console.log (idDel);
+ console.log (csvFormat());
+
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
