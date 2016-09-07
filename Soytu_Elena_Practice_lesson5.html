@@ -6,8 +6,6 @@
     <body>
      	<script type="text/javascript">
    
-	
-
 // Добавление пользователя в массив
 function User(){
 	var user={}, a;
@@ -41,15 +39,7 @@ function csvFormat() {
 	return usersCsv
 }
 function userDel(n){
-	users[n-1].id=null; 
-	users[n-1].firstName=null;
-	users[n-1].lastName=null;
-	users[n-1].birthDay=null;
-	users[n-1].phones=[];
-	for(i=0; i<users[n-1].phones.length; i++) {
-		users[n-1].phones[i]=0;
-	}
-	return users[n-1].lastName;
+	users.splice((n-1), 1);
 }
 //Добавление пользователя
 var users = []; currentCount=1;
@@ -66,7 +56,7 @@ console.log (csvFormat());
  	var idDel=Number(prompt('Введите id удаляемого пользователя'));
  	userDel(idDel);
  	}
- console.log (idDel);
+ //console.log (idDel);
  console.log (csvFormat());
 
         </script>
