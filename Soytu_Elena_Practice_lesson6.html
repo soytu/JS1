@@ -1,0 +1,80 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>Practice_lesson6</title>
+    </head>
+
+    <body>
+     	<script type="text/javascript">
+   
+// Функция добавления пользователя в массив
+
+function user(){
+	var user={}, phone;
+
+	user.id= counter(); 
+	user.firstName=prompt('Введите имя');
+	user.lastName=prompt('Введите фамилию');
+	user.birthDay=prompt('Введите дату рождения');
+	user.phones = [];
+
+	while (true) {
+		phone = prompt('Введите номер телефона');
+		
+		if (!phone||phone==null) break;
+		user.phones.push(phone);
+
+	}
+	users.push(user);
+}
+
+//Генератор id
+function counter(){
+	return	currentCount++;
+}
+
+//Вывод в csv-формат
+function csvFormat(users) {
+	return users.map(function(user) {
+		return Object.keys(user).map(function(key) { 
+			if (typeof user[key] == 'string' || typeof user[key] == 'number') return'"' + user[key] + '"'; 
+			else return user[key].map(function(phone) { return'"' + phone + '"'; }).join(';');
+    }).join(';');
+  }).join('\r\n');
+}
+
+//Функция удаления пользователя
+function userDel(idDel){
+	users1=users.map(function(user){return user.id});// Можно ли найти элемент в массиве, состоящем из объектов по свойству объекта?
+	
+	console.log(users1.indexOf(idDel));
+	users.splice(users1.indexOf(idDel), 1);
+}
+
+//Добавление пользователей
+var users=[], currentCount=1;
+var add=confirm("Добавить пользователя?");
+while (add == true) {
+	user();
+	add=confirm("Добавить пользователя?");
+}
+
+console.log(csvFormat(users));
+
+//Удаление пользователя
+var del=confirm("Удалить пользователя?");  
+
+if (del==true) {
+ 	var idDel=Number(prompt('Введите id удаляемого пользователя'));
+ 	userDel(idDel);
+}
+
+ console.log (csvFormat(users));
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
