@@ -20,8 +20,16 @@
 		width: 20px;
 	}
 	#chess {
+		
 		height: 180px;
 		width: 180px;
+		margin-left: 21px;
+		padding-top: 20px;
+	}
+	#vert {
+		float: left;
+		height: 200px;
+		width: 20px;
 	}
 </style>
 
@@ -29,8 +37,22 @@
     		
      	<script type="text/javascript">
 
-				var parentElem, div_dark, div_light;
-				
+     	function chessBoard(){			
+     		var letter=['', 'A','B','C','D','E','F','G','E'];
+
+				var div_dark, div_light, div_num, div_vert;
+
+				div_vert = document.createElement('div');
+     		div_vert.id="vert";
+     		document.body.appendChild(div_vert);
+
+					for (var i=0; i<8; i++) {
+						div_num = document.createElement('div');
+						div_num.className="light";	
+						document.body.appendChild(div_num);
+						div_num.innerHTML = i+1;
+					}
+
      		div_chess = document.createElement('div');
      		div_chess.id="chess";
      		document.body.appendChild(div_chess);
@@ -46,8 +68,16 @@
 								chess.appendChild(div_light);
 							}
 						}
-					
 					}
+					for (i=0; i<9; i++){
+						div_light = document.createElement('div');
+						div_light.className = "light";
+						vert.appendChild(div_light);
+						div_light.innerHTML = letter[i];
+					};
+				};
+				
+			chessBoard();
 
 			</script>
 
