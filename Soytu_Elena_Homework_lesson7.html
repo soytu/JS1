@@ -1,0 +1,60 @@
+		 <head>
+        <meta charset="utf-8">
+        <title>HomeWork_lesson7</title>
+    </head>
+<style>
+	.dark {
+		float: left;
+		border:1px solid #d6e9c6;
+		border-radius:4px;
+		background-color: #eaeaea;
+		height: 20px;
+		width: 20px;
+	}
+	.light {
+		float: left;
+		border:1px solid #d6e9c6;
+		border-radius:4px;
+		background-color: white;
+		height: 20px;
+		width: 20px;
+	}
+	#chess {
+		height: 180px;
+		width: 180px;
+	}
+</style>
+
+    <body>
+    		
+     	<script type="text/javascript">
+
+				var parentElem, div_dark, div_light;
+				
+     		div_chess = document.createElement('div');
+     		div_chess.id="chess";
+     		document.body.appendChild(div_chess);
+
+					for (i=0; i<8; i++){
+				 		for (var j=0; j<8; j++) {
+				 			if ((j+i)%2==0) {
+     						div_dark = document.createElement('div');
+								div_dark.className="dark";
+								chess.appendChild(div_dark);} else {
+								div_light = document.createElement('div');
+								div_light.className="light";
+								chess.appendChild(div_light);
+							}
+						}
+					
+					}
+
+			</script>
+
+    </body>
+</html>
+
+
+
+
+
