@@ -84,37 +84,91 @@
 		for (var j=0; j<8; j++) {
 			if ((j+i)%2==0) {
      		div_dark = document.createElement('div');
+     		div_dark.setAttribute('tabindex','1');
 				div_dark.className="dark";
 				chess.appendChild(div_dark);} else {
 				div_light = document.createElement('div');
 				div_light.className="light";
+				div_light.setAttribute('tabindex','1');
 				div_chess.appendChild(div_light);
 			};
 		};
 	};			
 }) ();
 
+function cellName(i1) { //определяю адрес активной ячейки
+	var res=letter[i1%8+1]+(8-parseInt(i1/8));
+	div_res.innerHTML = res;
+};
+
 div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
 document.body.appendChild(div_res);
 
-var aktiv=0; //для активной ячейки
+var aktiv=0; //для активной ячейки, наверно лишняя
 
-var elems = div_chess.children;
+var elems = div_chess.children; //массив ячеек
 elems = Array.prototype.slice.call(elems);
 elems.forEach(function(elem) {
 
-	elem.addEventListener('click', function(event){
+	elem.addEventListener('click', function(event){ //курсором
 		if (aktiv !=0 ) {
 			aktiv.classList.remove('aktiv');
 		};
 		elem.classList.add('aktiv');
 		var i=elems.indexOf(elem);
-		res=letter[i%8+1]+(8-parseInt(i/8));
-		div_res.innerHTML = res;
+		cellName(i);
 		aktiv = event.currentTarget;
 	});	
-	elem.addEventListener('keydown', function(event){ //не реагирует на событие
-		div_res.innerHTML = event.keyCode;
+
+	elem.addEventListener('keydown', function(event){ //стрелками
+		if (aktiv !=0 ) {
+			elem.classList.remove('aktiv');
+			
+		};
+		i=elems.indexOf(elem);
+		
+		if (event.keyCode==37) { //в лево
+			if (i%8>0){
+			elems[i-1].classList.add('aktiv');
+			elem=elems[i-1];
+		
+			}else{elems[i+7].classList.add('aktiv')
+			elem=elems[i+7]};
+		};
+
+		if (event.keyCode==38) { //вверх
+		if (i>=8){
+	
+		elems[i-8].classList.add('aktiv');
+		elem=elems[i-8];
+		
+		
+		}else{elems[i+56].classList.add('aktiv');
+		elem=elems[i+56]};
+		
+		};
+
+		if (event.keyCode==39) { //вправо
+		if ((i+1)%8>0){
+		elems[i+1].classList.add('aktiv');
+		elem=elems[i+1];
+
+		}else{elems[i-7].classList.add('aktiv')
+		elem=elems[i-7]};
+		};
+
+		if (event.keyCode==40) { //вниз
+
+		if (i<56){
+		elems[i+8].classList.add('aktiv');
+		elem=elems[i+8];
+		}else{elems[i-56].classList.add('aktiv')
+		elem=elems[i-56]};
+		};
+	
+	var i=elems.indexOf(elem);
+	cellName(i);
+	aktiv = elem;
 	});	
 });
 
