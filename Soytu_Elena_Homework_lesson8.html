@@ -90,18 +90,25 @@
 div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
 document.body.appendChild(div_res);
 
-
+var marked=0;
+console.log(marked);
 var elems = div_chess.children;
 elems = Array.prototype.slice.call(elems);
 elems.forEach(function(elem) {
-if (elem.style.backgroundColor=='red') elem.style.backgroundColor='white';
-elem.onclick=function(){
-	elem.style.backgroundColor='red';
-	var i=elems.indexOf(elem);
-	res=letter[i%8+1]+(8-parseInt(i/8));
-	div_res.innerHTML = res;
-	
-}	
+
+
+	elem.onclick=function(event){
+		if (marked !=0 ) {
+			console.log(marked)
+			marked.style.backgroundColor='blue'// Здесь надо вернуть все как было.
+		};
+		
+		elem.style.backgroundColor='red';
+		var i=elems.indexOf(elem);
+		res=letter[i%8+1]+(8-parseInt(i/8));
+		div_res.innerHTML = res;
+		marked = event.currentTarget; //Можно здесь запомнить текущий класс элемента, чтобы дальше использовать?
+	}	
 });
 
 	</script>
