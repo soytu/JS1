@@ -103,7 +103,7 @@ var elems = div_chess.children;
 elems = Array.prototype.slice.call(elems);
 elems.forEach(function(elem) {
 
-	elem.onclick=function(event){
+	elem.addEventListener('click', function(event){
 		if (marked !=0 ) {
 			console.log(marked)
 			marked.classList.remove('aktiv');
@@ -113,7 +113,7 @@ elems.forEach(function(elem) {
 		res=letter[i%8+1]+(8-parseInt(i/8));
 		div_res.innerHTML = res;
 		marked = event.currentTarget;
-	}	
+	});	
 });
 
 	</script>
