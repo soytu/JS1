@@ -97,24 +97,27 @@
 div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
 document.body.appendChild(div_res);
 
-var marked=0;
-console.log(marked);
+var aktiv=0; //для активной ячейки
+
 var elems = div_chess.children;
 elems = Array.prototype.slice.call(elems);
 elems.forEach(function(elem) {
 
 	elem.addEventListener('click', function(event){
-		if (marked !=0 ) {
-			console.log(marked)
-			marked.classList.remove('aktiv');
+		if (aktiv !=0 ) {
+			aktiv.classList.remove('aktiv');
 		};
 		elem.classList.add('aktiv');
 		var i=elems.indexOf(elem);
 		res=letter[i%8+1]+(8-parseInt(i/8));
 		div_res.innerHTML = res;
-		marked = event.currentTarget;
+		aktiv = event.currentTarget;
+	});	
+	elem.addEventListener('keydown', function(event){ //не реагирует на событие
+		div_res.innerHTML = event.keyCode;
 	});	
 });
+
 
 	</script>
 
