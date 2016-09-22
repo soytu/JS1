@@ -21,6 +21,14 @@
 		height: 20px;
 		width: 20px;
 	}
+	.aktiv {
+		float: left;
+		border:1px solid #d6e9c6;
+		border-radius:4px;
+		background-color: red;
+		height: 20px;
+		width: 20px;
+	}
 	#chess {
 		
 		height: 180px;
@@ -66,7 +74,7 @@
 		div_letter.className="light";	
 		document.body.appendChild(div_letter);
 		div_letter.innerHTML = letter[i+1];
-	}
+	};
 
   div_chess = document.createElement('div');
   div_chess.id="chess";
@@ -84,7 +92,6 @@
 			};
 		};
 	};			
-	
 }) ();
 
 div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
@@ -96,18 +103,16 @@ var elems = div_chess.children;
 elems = Array.prototype.slice.call(elems);
 elems.forEach(function(elem) {
 
-
 	elem.onclick=function(event){
 		if (marked !=0 ) {
 			console.log(marked)
-			marked.style.backgroundColor='blue'// Здесь надо вернуть все как было.
+			marked.classList.remove('aktiv');
 		};
-		
-		elem.style.backgroundColor='red';
+		elem.classList.add('aktiv');
 		var i=elems.indexOf(elem);
 		res=letter[i%8+1]+(8-parseInt(i/8));
 		div_res.innerHTML = res;
-		marked = event.currentTarget; //Можно здесь запомнить текущий класс элемента, чтобы дальше использовать?
+		marked = event.currentTarget;
 	}	
 });
 
