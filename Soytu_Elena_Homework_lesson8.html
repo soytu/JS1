@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta charset="utf-8">
+    <title>HomeWork_lesson8</title>
+</head>
+<style>
+	.dark {
+		float: left;
+		border:1px solid #d6e9c6;
+		border-radius:4px;
+		background-color: #eaeaea;
+		height: 20px;
+		width: 20px;
+	}
+	.light {
+		float: left;
+		border:1px solid #d6e9c6;
+		border-radius:4px;
+		background-color: white;
+		height: 20px;
+		width: 20px;
+	}
+	#chess {
+		
+		height: 180px;
+		width: 180px;
+		margin-left: 21px;
+		padding-top: 20px;
+	}
+	#num {
+		float: left;
+		height: 200px;
+		width: 20px;
+	}
+	
+</style>
+
+<body>
+    		
+  <script type="text/javascript">
+
+  //Создаю шахматную доску
+	var letter=['', 'A','B','C','D','E','F','G','E'];
+  
+  (function chessBoard(){			
+  
+	var div_dark, div_light, div_num, div_letter;
+
+	div_num = document.createElement('div');
+	div_num.id="num";
+	document.body.appendChild(div_num);
+	div_light = document.createElement('div');
+	div_light.className = "light";
+	div_num.appendChild(div_light);
+
+	for (var i=0; i<8; i++){
+		div_light = document.createElement('div');
+		div_light.className = "light";
+		div_num.appendChild(div_light);
+		div_light.innerHTML = (8-i);
+	};
+
+	for (i=0; i<8; i++) {
+		div_letter = document.createElement('div');
+		div_letter.className="light";	
+		document.body.appendChild(div_letter);
+		div_letter.innerHTML = letter[i+1];
+	}
+
+  div_chess = document.createElement('div');
+  div_chess.id="chess";
+  document.body.appendChild(div_chess);
+
+	for (i=0; i<8; i++){
+		for (var j=0; j<8; j++) {
+			if ((j+i)%2==0) {
+     		div_dark = document.createElement('div');
+				div_dark.className="dark";
+				chess.appendChild(div_dark);} else {
+				div_light = document.createElement('div');
+				div_light.className="light";
+				div_chess.appendChild(div_light);
+			};
+		};
+	};			
+	
+}) ();
+
+div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
+document.body.appendChild(div_res);
+
+
+var elems = div_chess.children;
+elems = Array.prototype.slice.call(elems);
+elems.forEach(function(elem) {
+if (elem.style.backgroundColor=='red') elem.style.backgroundColor='white';
+elem.onclick=function(){
+	elem.style.backgroundColor='red';
+	var i=elems.indexOf(elem);
+	res=letter[i%8+1]+(8-parseInt(i/8));
+	div_res.innerHTML = res;
+	
+}	
+});
+
+	</script>
+
+</body>
+</html>
