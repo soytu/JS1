@@ -30,16 +30,18 @@
 		width: 20px;
 	}
 	#chess {
-		
 		height: 180px;
 		width: 180px;
 		margin-left: 21px;
-		padding-top: 20px;
 	}
 	#num {
 		float: left;
-		height: 200px;
+		height: 180px;
 		width: 20px;
+	}
+	#letter {
+		height: 22px;
+		width: 200px;
 	}
 	
 </style>
@@ -49,56 +51,65 @@
   <script type="text/javascript">
 
   //Создаю шахматную доску
-	var letter=['', 'A','B','C','D','E','F','G','E'];
+	var letter=['A','B','C','D','E','F','G','E'];
+	var div_cell, div_num, div_chess, div_letter;
   
   (function chessBoard(){			
   
-	var div_dark, div_light, div_num, div_letter;
+	 div_letter = document.createElement('div'); //горизонтальный див для букв
+ 	 div_letter.id="letter";
+ 	 document.body.appendChild(div_letter);
 
-	div_num = document.createElement('div');
-	div_num.id="num";
-	document.body.appendChild(div_num);
-	div_light = document.createElement('div');
-	div_light.className = "light";
-	div_num.appendChild(div_light);
-
-	for (var i=0; i<8; i++){
-		div_light = document.createElement('div');
-		div_light.className = "light";
-		div_num.appendChild(div_light);
-		div_light.innerHTML = (8-i);
-	};
-
-	for (i=0; i<8; i++) {
-		div_letter = document.createElement('div');
-		div_letter.className="light";	
-		document.body.appendChild(div_letter);
-		div_letter.innerHTML = letter[i+1];
-	};
-
-  div_chess = document.createElement('div');
-  div_chess.id="chess";
-  document.body.appendChild(div_chess);
-
-	for (i=0; i<8; i++){
-		for (var j=0; j<8; j++) {
-			if ((j+i)%2==0) {
-     		div_dark = document.createElement('div');
-     		div_dark.setAttribute('tabindex','1');
-				div_dark.className="dark";
-				chess.appendChild(div_dark);} else {
-				div_light = document.createElement('div');
-				div_light.className="light";
-				div_light.setAttribute('tabindex','1');
-				div_chess.appendChild(div_light);
-			};
-		};
+ 	 div_cell = document.createElement('div'); //первая ячейка
+   div_cell.className="light";	
+ 	 div_letter.appendChild(div_cell);
+ 
+ 
+ 	 div_num = document.createElement('div'); //вертикальный див для цифр
+ 	 div_num.id="num";
+ 	 document.body.appendChild(div_num);
+ 
+ 	 div_chess = document.createElement('div'); //блок для ячеек поля
+   div_chess.id="chess";
+   document.body.appendChild(div_chess);
+ 
+ 		for (i=0; i<8; i++){
+ 			div_cell = document.createElement('div'); //ячейки с буквами
+ 			div_cell.className="light";	
+ 			div_letter.appendChild(div_cell);
+ 	  	div_cell.innerHTML = letter[i];
+	
+	
+	 			div_cell = document.createElement('div'); //ячейки с цифрами
+	 			div_cell.className = "light";
+	 			div_num.appendChild(div_cell);
+	 			div_cell.innerHTML = (8-i);
+	
+	  		for (var j=0; j<8; j++) { //ячейки поля
+	 	 			if ((j+i)%2==0) {
+	    			div_cell = document.createElement('div');
+	    	 		div_cell.setAttribute('tabindex','1');
+	 	 				div_cell.className="dark";
+	 	 				div_chess.appendChild(div_cell);} else {
+	 	 				div_cell = document.createElement('div');
+	 	 				div_cell.className="light";
+	 	 				div_cell.setAttribute('tabindex','1');
+	 	 				div_chess.appendChild(div_cell);
+	 	 			};
+ 	 		};
 	};			
 }) ();
+
 
 function cellName(i1) { //определяю адрес активной ячейки
 	var res=letter[i1%8+1]+(8-parseInt(i1/8));
 	div_res.innerHTML = res;
+};
+
+function delActiv() { //удаление класса активной ячейки
+	if (aktiv !=0 ) {
+			aktiv.classList.remove('aktiv');
+		};
 };
 
 div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
@@ -108,12 +119,12 @@ var aktiv=0; //для активной ячейки, наверно лишняя
 
 var elems = div_chess.children; //массив ячеек
 elems = Array.prototype.slice.call(elems);
+
+
 elems.forEach(function(elem) {
 
 	elem.addEventListener('click', function(event){ //курсором
-		if (aktiv !=0 ) {
-			aktiv.classList.remove('aktiv');
-		};
+		delActiv();
 		elem.classList.add('aktiv');
 		var i=elems.indexOf(elem);
 		cellName(i);
@@ -121,39 +132,27 @@ elems.forEach(function(elem) {
 	});	
 
 	elem.addEventListener('keydown', function(event){ //стрелками
-		if (aktiv !=0 ) {
-			elem.classList.remove('aktiv');
-			
-		};
+		delActiv();
 		i=elems.indexOf(elem);
 		
 		if (event.keyCode==37) { //в лево
 			if (i%8>0){
 			elems[i-1].classList.add('aktiv');
-			elem=elems[i-1];
-		
-			}else{elems[i+7].classList.add('aktiv')
+			elem=elems[i-1];}else{elems[i+7].classList.add('aktiv')
 			elem=elems[i+7]};
 		};
 
 		if (event.keyCode==38) { //вверх
-		if (i>=8){
-	
+		if (i>=8){	
 		elems[i-8].classList.add('aktiv');
-		elem=elems[i-8];
-		
-		
-		}else{elems[i+56].classList.add('aktiv');
+		elem=elems[i-8];}else{elems[i+56].classList.add('aktiv');
 		elem=elems[i+56]};
-		
 		};
 
 		if (event.keyCode==39) { //вправо
 		if ((i+1)%8>0){
 		elems[i+1].classList.add('aktiv');
-		elem=elems[i+1];
-
-		}else{elems[i-7].classList.add('aktiv')
+		elem=elems[i+1];}else{elems[i-7].classList.add('aktiv')
 		elem=elems[i-7]};
 		};
 
@@ -161,8 +160,7 @@ elems.forEach(function(elem) {
 
 		if (i<56){
 		elems[i+8].classList.add('aktiv');
-		elem=elems[i+8];
-		}else{elems[i-56].classList.add('aktiv')
+		elem=elems[i+8];}else{elems[i-56].classList.add('aktiv')
 		elem=elems[i-56]};
 		};
 	
