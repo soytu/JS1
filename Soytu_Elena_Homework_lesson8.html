@@ -25,7 +25,7 @@
 		float: left;
 		border:1px solid #d6e9c6;
 		border-radius:4px;
-		background-color: red;
+		background-color: #33FF33;
 		height: 20px;
 		width: 20px;
 	}
@@ -69,7 +69,7 @@
  	 div_num.id="num";
  	 document.body.appendChild(div_num);
  
- 	 div_chess = document.createElement('div'); //блок для ячеек поля
+ 	 div_chess = document.createElement('div'); //див для ячеек поля
    div_chess.id="chess";
    document.body.appendChild(div_chess);
  
@@ -112,7 +112,7 @@ function delActiv() { //удаление класса активной ячей�
 		};
 };
 
-div_res = document.createElement('div'); //блок для вывода результата нажатия на клетку
+div_res = document.createElement('div'); //див для вывода результата нажатия на клетку
 document.body.appendChild(div_res);
 
 var aktiv=0; //для активной ячейки, наверно лишняя
@@ -135,35 +135,35 @@ elems.forEach(function(elem) {
 		delActiv();
 		i=elems.indexOf(elem);
 		
-		if (event.keyCode==37) { //в лево
+		switch (event.keyCode) {
+
+			case '37': //в лево
 			if (i%8>0){
 			elems[i-1].classList.add('aktiv');
-			elem=elems[i-1];}else{elems[i+7].classList.add('aktiv')
-			elem=elems[i+7]};
-		};
+			elem=elems[i-1];}
+			else{elems[i+7].classList.add('aktiv')
+			elem=elems[i+7];}
+			break;
 
-		if (event.keyCode==38) { //вверх
-		if (i>=8){	
-		elems[i-8].classList.add('aktiv');
-		elem=elems[i-8];}else{elems[i+56].classList.add('aktiv');
-		elem=elems[i+56]};
-		};
+			case '38': //вверх
+			if (i>=8){	
+			elems[i-8].classList.add('aktiv');
+			elem=elems[i-8];}else{elems[i+56].classList.add('aktiv');
+			elem=elems[i+56]};
+			break;
 
-		if (event.keyCode==39) { //вправо
-		if ((i+1)%8>0){
-		elems[i+1].classList.add('aktiv');
-		elem=elems[i+1];}else{elems[i-7].classList.add('aktiv')
-		elem=elems[i-7]};
-		};
+			case '39': if ((i+1)%8>0){
+			elems[i+1].classList.add('aktiv');
+			elem=elems[i+1];}else{elems[i-7].classList.add('aktiv')
+			elem=elems[i-7]};
+			break;
 
-		if (event.keyCode==40) { //вниз
-
-		if (i<56){
-		elems[i+8].classList.add('aktiv');
-		elem=elems[i+8];}else{elems[i-56].classList.add('aktiv')
-		elem=elems[i-56]};
+			case '40': if (i<56){
+			elems[i+8].classList.add('aktiv');
+			elem=elems[i+8];}else{elems[i-56].classList.add('aktiv')
+			elem=elems[i-56]};
+			break;
 		};
-	
 	var i=elems.indexOf(elem);
 	cellName(i);
 	aktiv = elem;
