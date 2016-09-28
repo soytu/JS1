@@ -102,9 +102,10 @@
 
 
 function cellName(i1) { //определяю адрес активной ячейки
-	var res=letter[i1%8+1]+(8-parseInt(i1/8));
+	var res=letter[i1%8]+(8-parseInt(i1/8));
 	div_res.innerHTML = res;
 };
+
 
 function delActiv() { //удаление класса активной ячейки
 	if (aktiv !=0 ) {
@@ -137,7 +138,7 @@ elems.forEach(function(elem) {
 		
 		switch (event.keyCode) {
 
-			case '37': //в лево
+			case 37: //в лево
 			if (i%8>0){
 			elems[i-1].classList.add('aktiv');
 			elem=elems[i-1];}
@@ -145,24 +146,27 @@ elems.forEach(function(elem) {
 			elem=elems[i+7];}
 			break;
 
-			case '38': //вверх
+			case 38: //вверх
 			if (i>=8){	
 			elems[i-8].classList.add('aktiv');
 			elem=elems[i-8];}else{elems[i+56].classList.add('aktiv');
 			elem=elems[i+56]};
 			break;
 
-			case '39': if ((i+1)%8>0){
+			case 39: if ((i+1)%8>0){    //вправо
 			elems[i+1].classList.add('aktiv');
 			elem=elems[i+1];}else{elems[i-7].classList.add('aktiv')
 			elem=elems[i-7]};
 			break;
 
-			case '40': if (i<56){
+			case 40: if (i<56){ //вниз
 			elems[i+8].classList.add('aktiv');
 			elem=elems[i+8];}else{elems[i-56].classList.add('aktiv')
 			elem=elems[i-56]};
 			break;
+			default:
+    alert(event.keyCode);
+
 		};
 	var i=elems.indexOf(elem);
 	cellName(i);
